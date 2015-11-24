@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>global page</title>
+   <script type="text/javascript">
+
+// Delay setting (in milliseconds)
+var delay = safari.extension.settings.delay;
+
+// Singleton for the event used to move the current tab after delay
+var activationEvent = null;
+
+// Move the given tab to the first position
+var moveTab = function(tab) {
+  tab.browserWindow.insertTab(tab, 0);
+}
+
+// Listener for "activate" events
+var activateHandler = function(event) {
+
+  // Filter to tab activation events
+	if (Object.prototype.toString.call(event.target) === "[object SafariBrowserTab]") {
+
+    // If there's an outstanding event, cancel and clear it
+    if (activationEvent != null) {
+      clearTimeout(activationEvent);
+      activationEvent = null;
+    }
+
+    // Schedule the activated tab to be moved
+		activationEvent = setTimeout(function() {
+      moveTab(event.target);
+    }, delay);
+	}
+}
+
+// Register our listener for all "activate" events
+safari.application.addEventListener("activate", activateHandler, true);
+
+// Handler for changes to delay setting
+function delayChanged(event) {
+    if (event.key == "delay") {
+      // Only change value if setting is an integer
+      var newDelay = parseInt(event.newValue);
+      if (newDelay != NaN) {
+        delay = newDelay;
+      }
+    }
+}
+
+// Register for any setting changes
+safari.extension.settings.addEventListener("change", delayChanged, false);
+
+   </script>
+</head>
+<body> </body>
+</html>

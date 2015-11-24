@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Burke Mamlin</string>
+	<key>Builder Version</key>
+	<string>11601.2.7.2</string>
+	<key>CFBundleDisplayName</key>
+	<string>Tab Stack</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.burkeware.tabstack</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Global Page</key>
+		<string>global.html</string>
+	</dict>
+	<key>Description</key>
+	<string>Moves current tab to the left, so most recently used tabs are on the left of the tab list.</string>
+	<key>DeveloperIdentifier</key>
+	<string>HESX3DPAK4</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Website</key>
+	<string>http://burkeware.com</string>
+</dict>
+</plist>
