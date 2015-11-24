@@ -1,5 +1,5 @@
 How to Contribute
 =================
-# Fork the repo
-# Make some improvements
-# Submit a pull request
+1. Fork the repo
+1. Make some improvements
+1. Submit a pull request
