@@ -7,6 +7,9 @@
 // Delay setting (in milliseconds)
 var delay = safari.extension.settings.delay;
 
+// Whether or not to skip delay for new tab
+var noDelayForNewTab = true
+
 // Singleton for the event used to move the current tab after delay
 var activationEvent = null;
 
@@ -27,29 +30,37 @@ var activateHandler = function(event) {
       activationEvent = null;
     }
 
+    // Check if new tab (blank URL) should skip delay
+    var millisecondsBeforeMoving = delay;
+    if (noDelayForNewTab && event.target.url === "") {
+      millisecondsBeforeMoving = 0;
+    }
+
     // Schedule the activated tab to be moved
 		activationEvent = setTimeout(function() {
       moveTab(event.target);
-    }, delay);
+    }, millisecondsBeforeMoving);
 	}
 }
 
 // Register our listener for all "activate" events
 safari.application.addEventListener("activate", activateHandler, true);
 
-// Handler for changes to delay setting
-function delayChanged(event) {
-    if (event.key == "delay") {
-      // Only change value if setting is an integer
-      var newDelay = parseInt(event.newValue);
-      if (newDelay != NaN) {
-        delay = newDelay;
-      }
+// Handler for changes to settings
+function settingChanged(event) {
+  if (event.key == "delay") {
+    // Only change value if setting is an integer
+    var newDelay = parseInt(event.newValue);
+    if (newDelay != NaN) {
+      delay = newDelay;
     }
+  } else if (event.key = "noDelayForNewTab") {
+    noDelayForNewTab = event.newValue;
+  }
 }
 
 // Register for any setting changes
-safari.extension.settings.addEventListener("change", delayChanged, false);
+safari.extension.settings.addEventListener("change", settingChanged, false);
 
    </script>
 </head>

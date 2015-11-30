@@ -12,5 +12,15 @@
 		<key>Type</key>
 		<string>TextField</string>
 	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true />
+		<key>Key</key>
+		<string>noDelayForNewTab</string>
+		<key>Title</key>
+		<string>No delay for new tab</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
 </array>
 </plist>
