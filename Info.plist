@@ -37,7 +37,9 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://bmamlin.github.io/tabstack.safariextension/updates.plist</string>
 	<key>Website</key>
-	<string>http://burkeware.com</string>
+	<string>https://github.com/bmamlin/tabstack.safariextension</string>
 </dict>
 </plist>
