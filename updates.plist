@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+   <key>Extension Updates</key>
+   <array>
+     <dict>
+       <key>CFBundleIdentifier</key>
+       <string>com.burkeware.safari.tabstack</string>
+       <key>Developer Identifier</key>
+       <string>HESX3DPAK4</string>
+       <key>CFBundleVersion</key>
+       <string>1.1</string>
+       <key>CFBundleShortVersionString</key>
+       <string>1.1</string>
+       <key>URL</key>
+       <string>http://burkeware.com/software/TabStack-1.1.safariextz</string>
+       <key>Update From Gallery</key>
+       <true/>
+     </dict>
+   </array>
+</dict>
+</plist>
