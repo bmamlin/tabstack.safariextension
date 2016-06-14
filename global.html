@@ -5,16 +5,20 @@
    <script type="text/javascript">
 
 // Delay setting (in milliseconds)
-var delay = safari.extension.settings.delay;
+var delay = parseInt(safari.extension.settings.delay);
+
+// Number of tabs which shouldn't be moved
+var numPinnedTabs = parseInt(safari.extension.settings.numPinnedTabs);
 
 // Whether or not to skip delay for new tab
-var noDelayForNewTab = true
+var noDelayForNewTab = true;
 
 // Singleton for the event used to move the current tab after delay
 var activationEvent = null;
 
 // Move the given tab to the first position
 var moveTab = function(tab) {
+  console.log('Moving tab:', tab)
   tab.browserWindow.insertTab(tab, 0);
 }
 
@@ -22,7 +26,7 @@ var moveTab = function(tab) {
 var activateHandler = function(event) {
 
   // Filter to tab activation events
-	if (Object.prototype.toString.call(event.target) === "[object SafariBrowserTab]") {
+  if (Object.prototype.toString.call(event.target) === "[object SafariBrowserTab]") {
 
     // If there's an outstanding event, cancel and clear it
     if (activationEvent != null) {
@@ -37,10 +41,19 @@ var activateHandler = function(event) {
     }
 
     // Schedule the activated tab to be moved
-		activationEvent = setTimeout(function() {
-      moveTab(event.target);
-    }, millisecondsBeforeMoving);
-	}
+    var tab = event.target;
+    var tab_position = tab.browserWindow.tabs.findIndex(function (item) { return item === tab; });
+
+    if (tab_position < numPinnedTabs) {
+      console.log('Don\'t moving this tab because it\'s position less than', numPinnedTabs);
+    } else {
+      activationEvent = setTimeout(
+        function() {
+            moveTab(tab);
+        },
+        millisecondsBeforeMoving);
+    }
+  }
 }
 
 // Register our listener for all "activate" events
@@ -48,14 +61,19 @@ safari.application.addEventListener("activate", activateHandler, true);
 
 // Handler for changes to settings
 function settingChanged(event) {
-  if (event.key == "delay") {
+  console.log('Settings changed', event);
+  var name = event.key;
+  var value = event.newValue;
+  var intSettings = ["delay", "numPinnedTabs"];
+
+  if (intSettings.includes(name)) {
     // Only change value if setting is an integer
-    var newDelay = parseInt(event.newValue);
-    if (newDelay != NaN) {
-      delay = newDelay;
+    value = parseInt(value);
+    if (value != NaN) {
+      window[name] = value;
     }
-  } else if (event.key = "noDelayForNewTab") {
-    noDelayForNewTab = event.newValue;
+  } else {
+    window[name] = value;
   }
 }
 

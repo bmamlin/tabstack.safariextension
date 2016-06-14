@@ -14,13 +14,25 @@
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
-		<true />
+		<true/>
 		<key>Key</key>
 		<string>noDelayForNewTab</string>
 		<key>Title</key>
 		<string>No delay for new tab</string>
 		<key>Type</key>
 		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>0</string>
+		<key>Key</key>
+		<string>numPinnedTabs</string>
+		<key>MaximumValue</key>
+		<integer>10</integer>
+		<key>Title</key>
+		<string>Number of pinned tabs which shouldn't be moved</string>
+		<key>Type</key>
+		<string>TextField</string>
 	</dict>
 </array>
 </plist>
