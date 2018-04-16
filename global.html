@@ -8,10 +8,13 @@
 var delay = safari.extension.settings.delay;
 
 // Whether or not to skip delay for new tab
-var noDelayForNewTab = true
+var noDelayForNewTab = true;
 
 // Singleton for the event used to move the current tab after delay
 var activationEvent = null;
+
+var moveAfterSelectingTab = safari.extension.settings.moveAfterSelectingTab;
+var savedTab = safari.application.activeBrowserWindow.activeTab;
 
 // Move the given tab to the first position
 var moveTab = function(tab) {
@@ -36,10 +39,12 @@ var activateHandler = function(event) {
       millisecondsBeforeMoving = 0;
     }
 
-    // Schedule the activated tab to be moved
+    // Schedule the tab to be moved
+    var tabToMove = moveAfterSelectingTab ? savedTab : event.target;
 		activationEvent = setTimeout(function() {
-      moveTab(event.target);
+      moveTab(tabToMove);
     }, millisecondsBeforeMoving);
+    savedTab = event.target;
 	}
 }
 
@@ -54,8 +59,10 @@ function settingChanged(event) {
     if (newDelay != NaN) {
       delay = newDelay;
     }
-  } else if (event.key = "noDelayForNewTab") {
+  } else if (event.key == "noDelayForNewTab") {
     noDelayForNewTab = event.newValue;
+  } else if (event.key == "moveAfterSelectingTab") {
+    moveAfterSelectingTab = event.newValue;
   }
 }
 
