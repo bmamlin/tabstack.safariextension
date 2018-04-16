@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Burke Mamlin</string>
 	<key>Builder Version</key>
-	<string>11601.2.7.2</string>
+	<string>13605.1.33.1.2</string>
 	<key>CFBundleDisplayName</key>
 	<string>Tab Stack</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -24,7 +24,7 @@
 	<key>Description</key>
 	<string>Moves current tab to the left, so most recently used tabs are on the left of the tab list.</string>
 	<key>DeveloperIdentifier</key>
-	<string>HESX3DPAK4</string>
+	<string>0000000000</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
